@@ -257,3 +257,26 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# Report answer - "Determine whether the direction of the difference is
+# consistent with the predicted perceptual after-effect."
+#
+# See data/experiment3/plots/aftereffect_pooled.png and
+# scripts/14_analyze_experiment3.py output.
+#
+# Predicted direction: adapting to the SAD endpoint should make a neutral
+# test face look relatively HAPPIER (higher rating), and adapting to the
+# HAPPY endpoint should make it look relatively SADDER (lower rating) -
+# i.e. mean_rating(sad-adapted) > mean_rating(happy-adapted) for every
+# test stimulus.
+#
+# Result: yes, consistent. Pooled across both participants, all 3 test
+# stimuli (2.8, 3.0, 3.2) show ratings higher after sad-endpoint
+# adaptation than after happy-endpoint adaptation (differences of +0.67,
+# +0.50, +0.33). Per participant, s224959 shows the predicted direction on
+# all 3 test stimuli; s225083 shows it on 2 of 3 (the 3.2 stimulus is
+# reversed by -0.33, likely noise given only 3 repeats per cell). Overall
+# the data support a genuine contrastive perceptual after-effect.
+# ---------------------------------------------------------------------------
