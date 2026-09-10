@@ -1,6 +1,10 @@
 # Raw UTKFace dataset (23k+ images, download separately from Kaggle - see README)
 data/raw/
 
+# Regenerable PCA artifacts (run scripts/7_pca.py to recreate; deterministic)
+data/pca/*.npy
+data/pca/scores.csv
+
 # Python
 __pycache__/
 *.pyc
