@@ -129,3 +129,43 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# Report answer - "In your report, visualise some of the principal
+# components that were selected in the same way as you did in step 3.
+# Are the features relevant to the rating task?"
+#
+# See data/regression/plots/selected_pc_triplets.png (min/average/max
+# triplets for the 17 forward-selected PCs: 1, 3, 5, 8, 9, 11, 13, 14, 15,
+# 16, 18, 19, 22, 27, 43, 52, 73).
+#
+# A subset of the selected PCs show a visible change in mouth shape between
+# their min and max faces - most clearly PC5, PC9, PC14 and PC22, where the
+# max face has a visibly more open/upturned mouth than the min face. These
+# look plausibly related to the happy/sad rating task.
+#
+# Several other selected PCs (PC1, PC3, PC8, PC13, PC16) mainly vary in
+# overall brightness/contrast or head angle rather than expression - the
+# same nuisance lighting/pose variation already flagged for PC1 in step 3.
+# Forward selection can still pick these up if they happen to correlate
+# with the ratings in this particular sample of 200 images (e.g. if
+# lighting condition happened to coincide with expression during
+# selection), without representing a genuine, generalisable encoding of
+# happy/sad.
+#
+# The higher-index components (PC43, PC52, PC73) explain very little
+# overall image variance and their min/max faces show only subtle,
+# localised texture differences that are hard to interpret as expression
+# at all - these more likely reflect fine per-image idiosyncrasies
+# (individual identity detail) than a shared expression dimension.
+#
+# Overall: the model is picking up a real, interpretable expression signal
+# (via PC5/PC9/PC14/PC22 in particular), but it is mixed in with nuisance
+# and possibly-overfit components, consistent with the moderate
+# cross-validated R^2 (~0.58) rather than a very high one. This is worth
+# discussing as a limitation in the report: with only 200 images and 2
+# raters, forward selection has enough freedom to include a few PCs that
+# fit this specific sample without necessarily capturing a robust,
+# generalisable "happy/sad" direction.
+# ---------------------------------------------------------------------------
