@@ -114,3 +114,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# Report answer - "Show the synthetic images side-by-side... Discuss if the
+# images appear as expected and, if not, what the reason could be."
+#
+# See data/synthetic/plots/synthetic_faces_row.png.
+#
+# Mostly as expected: the mouth transitions smoothly from a flat/frowning
+# shape at low ratings to a clear open smile at high ratings, matching the
+# happy/sad continuum.
+#
+# Not as expected: the two lowest-rating faces (0.5, 1.0) show a bright,
+# unnatural white patch near the mouth. Reason: ||w||^2 is very small
+# (8.3e-7), so alpha has to be huge to reach low target ratings, which
+# pushes pixel values outside [0, 255] before clipping (see the
+# pixel_min/max_before_clip columns in synthetic_manifest.csv) - i.e. these
+# ratings extrapolate beyond what the model was ever fit on (see step 6).
+# ---------------------------------------------------------------------------
