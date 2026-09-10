@@ -231,11 +231,6 @@ def main():
         for _, row in test_manifest.iterrows()
     ]
 
-    # pre-render all 5 unique images (with fixation point) once
-    images = {}
-    for spec in adapt_specs + test_specs:
-        images[spec["filename"]] = with_fixation(Path(spec["filename"]))
-
     trials = build_trial_list(adapt_specs, test_specs)
     print(f"{len(trials)} trials ({len(adapt_specs)} adaptation endpoints x "
           f"{len(test_specs)} test stimuli x {REPEATS_PER_CONDITION} repeats)")
@@ -249,6 +244,12 @@ def main():
         raise SystemExit("No student ID entered, aborting.")
     student_id = student_id.strip()
     root.deiconify()
+
+    # pre-render all 5 unique images (with fixation point) once - needs a
+    # Tk root to already exist, so this happens after root = tk.Tk()
+    images = {}
+    for spec in adapt_specs + test_specs:
+        images[spec["filename"]] = with_fixation(Path(spec["filename"]))
 
     Experiment3App(root, student_id, trials, images)
     root.mainloop()
